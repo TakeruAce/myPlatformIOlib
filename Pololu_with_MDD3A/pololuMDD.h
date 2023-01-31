@@ -12,7 +12,7 @@
 
 class PololuMDD {
     public:
-        PololuMDD(int PWM1, int PWM2, uint8_t ENC1, uint8_t ENC2, float gear_ratio, float KP, float KI, float KD, float KF, bool reversed, bool isTorqueMode_, uint8_t enc_id, bool is3A_,bool is_param_identify_) {
+        PololuMDD(int PWM1, int PWM2, uint8_t ENC1, uint8_t ENC2, float gear_ratio, float KP, float KI, float KD, float KF, bool reversed, bool isTorqueMode_, uint8_t enc_id, bool is3A_,bool is_param_identify_, float count_per_rev) {
             pwm1 = PWM1;//dir if 10A
             pwm2 = PWM2;//pwm if 10A
             enc1 = ENC1;
@@ -28,6 +28,7 @@ class PololuMDD {
             isTorqueMode = isTorqueMode_;
             is3A = is3A_;
             is_param_identify = is_param_identify_;
+            COUNT_PER_REV = count_per_rev;
         }
         void setup();
         void updatePosition();
@@ -104,7 +105,7 @@ class PololuMDD {
         float GEAR_RATIO = 1.0; // output / input
         const int MAX_MOTOR_OUT = 255;
         const int MIN_MOTOR_OUT = 0;
-        const float COUNT_PER_REV = 20;
+        float COUNT_PER_REV = 20;
         // const float AM_GEAR_RATIO = 150.5827; // pololu #3053
         float AM_GEAR_RATIO = 25; 
         float DEGREE_PER_COUNT = 1;
