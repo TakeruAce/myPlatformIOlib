@@ -93,7 +93,7 @@ void PololuMDD::setTargetSpeedRPS(float targetRPS) {
 void PololuMDD::setTargetAngle(float target) {
   if(isAimingAngle) return;
     targetSpeed = 0;
-    targetAngle = (getAngle() - fmod(getAngle(),360));
+    targetAngle = (getAngle() - fmod(getAngle(),360)) + target;
     isAimingAngle = true;
     isTorqueMode = false;
     digitalWrite(13,HIGH);

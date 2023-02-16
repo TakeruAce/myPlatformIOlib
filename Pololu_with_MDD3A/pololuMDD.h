@@ -19,6 +19,7 @@ class PololuMDD {
             enc2 = ENC2;
             Enc = new Encoder(ENC1, ENC2);
             AM_GEAR_RATIO = gear_ratio;
+            COUNT_PER_REV = count_per_rev;
             DEGREE_PER_COUNT = 360.0 / COUNT_PER_REV / AM_GEAR_RATIO;
             Kp = KP;
             Ki = KI;
@@ -28,7 +29,6 @@ class PololuMDD {
             isTorqueMode = isTorqueMode_;
             is3A = is3A_;
             is_param_identify = is_param_identify_;
-            COUNT_PER_REV = count_per_rev;
         }
         void setup();
         void updatePosition();
