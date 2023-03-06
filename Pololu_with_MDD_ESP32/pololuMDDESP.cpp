@@ -1,17 +1,19 @@
-#include "pololuMDD.h"
+#include "pololuMDDESP.h"
 
 void PololuMDD::setup() {
     pinMode(pwm1,OUTPUT);
     pinMode(pwm2,OUTPUT);
-    // pinMode(enc1,INPUT);
-    // pinMode(enc2,INPUT);
+    ESP32Encoder::useInternalWeakPullResistors=UP;
+    Enc.attachFullQuad(enc1,enc2);
+    pinMode(enc1,INPUT);
+    pinMode(enc2,INPUT);
 }
 
 void PololuMDD::updatePosition() {
   if (!mIsReversed) {
-    counter = Enc->read();
+    counter = Enc.getCount();
   } else {
-    counter = -Enc->read();
+    counter = -Enc.getCount();
   }
   return;
 }
@@ -281,7 +283,7 @@ void PololuMDD::stop() {
 }
 
 void PololuMDD::newPosInit() {
-    Enc->write(0);
+    Enc.clearCount();
     counter = 0;
     prevCounter = 0;
 }
