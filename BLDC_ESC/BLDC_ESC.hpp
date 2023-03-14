@@ -9,9 +9,6 @@
 #include<Arduino.h>
 #endif
 
-#ifndef utils_hpp
-#include<utils.hpp>
-#endif
 
 class BLDC_ESC {
     public:
@@ -20,7 +17,7 @@ class BLDC_ESC {
             mPulseWidthForMaxSpeed = pulse_width_for_max_speed;
             mPulseWidthForMinSpeed = pulse_width_for_min_speed;
         }
-        void setup(SerialHandler mySerial) {
+        void setup() {
             setThrottlePin();
             mThrottle.writeMicroseconds(mPulseWidthForMaxSpeed);
             int mil = millis();
@@ -29,18 +26,16 @@ class BLDC_ESC {
             mThrottle.writeMicroseconds(mPulseWidthForMinSpeed);
             mil = millis();
             while(millis() - mil < 2000);
-            mySerial.hwStream->println("Setup is finished!");
             digitalWrite(13,HIGH);
             mIsSetup = true;
         }
 
-        void quickSetup(SerialHandler mySerial) {
+        void quickSetup() {
             setThrottlePin();
             digitalWrite(13,HIGH);
             mThrottle.writeMicroseconds(mPulseWidthForMinSpeed);
             int mil = millis();
             while(millis() - mil < 2000);
-            mySerial.hwStream->println("Quick Setup is finished!");
             digitalWrite(13,LOW);
             mIsSetup = true;
         }

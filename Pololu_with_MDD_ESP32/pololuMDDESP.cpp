@@ -148,11 +148,6 @@ void PololuMDD::calcuratePWMSpeed(double currentSpeed, double targetSpeed, int c
 }
 
 void PololuMDD::calcuratePWMSpeedwithFF() {
-  // if (targetSpeed ==0) {
-  //   pwm1OutVal = 0;
-  //   pwm2OutVal = 0;
-  //   return;
-  // }
   double motorSpeedErrorInCPM = (targetSpeed - currSpeed);
 
   motorSpeedIntegral += constrain(((motorSpeedErrorInCPM + preMotorSpeedErrorInCPM)/2 * (double)dt / 1000000.0),-10,10);

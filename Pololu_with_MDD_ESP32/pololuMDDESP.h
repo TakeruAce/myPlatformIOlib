@@ -11,7 +11,7 @@
 
 class PololuMDD {
     public:
-        PololuMDD(int PWM1, int PWM2, uint8_t ENC1, uint8_t ENC2, float gear_ratio, float KP, float KI, float KD, float KF, bool reversed, bool isTorqueMode_, uint8_t enc_id, bool is3A_,bool is_param_identify_, float count_per_rev) {
+        PololuMDD(int PWM1, int PWM2, uint8_t ENC1, uint8_t ENC2, float gear_ratio, float KP, float KI, float KD, float KF, bool reversed, bool isTorqueMode_, uint8_t enc_id, bool is3A_,bool is_param_identify_, float count_per_rev, int esppwmgroup) {
             pwm1 = PWM1;//dir if 10A
             pwm2 = PWM2;//pwm if 10A
             enc1 = ENC1;
@@ -27,6 +27,7 @@ class PololuMDD {
             isTorqueMode = isTorqueMode_;
             is3A = is3A_;
             is_param_identify = is_param_identify_;
+            esppwmgroup_ = esppwmgroup;
         }
         void setup();
         void updatePosition();
@@ -88,6 +89,7 @@ class PololuMDD {
         int pwm1, pwm2 ,enc1,enc2;
         int counter,prevCounter;
         ESP32Encoder Enc;
+        int esppwmgroup_;
         bool mIsReversed;
         float targetTorque;
         float currSpeed,prevSpeed,targetSpeed;
@@ -101,7 +103,7 @@ class PololuMDD {
         
         // constrains
         float GEAR_RATIO = 1.0; // output / input
-        const int MAX_MOTOR_OUT = 255;
+        const int MAX_MOTOR_OUT = 256;
         const int MIN_MOTOR_OUT = 0;
         float COUNT_PER_REV = 20;
         // const float AM_GEAR_RATIO = 150.5827; // pololu #3053

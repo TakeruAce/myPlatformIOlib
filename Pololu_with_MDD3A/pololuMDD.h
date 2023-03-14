@@ -12,7 +12,7 @@
 
 class PololuMDD {
     public:
-        PololuMDD(int PWM1, int PWM2, uint8_t ENC1, uint8_t ENC2, float gear_ratio, float KP, float KI, float KD, float KF, bool reversed, bool isTorqueMode_, uint8_t enc_id, bool is3A_,bool is_param_identify_, float count_per_rev) {
+        PololuMDD(int PWM1, int PWM2, uint8_t ENC1, uint8_t ENC2, float gear_ratio, float KP, float KI, float KD, float KF, bool reversed, bool isTorqueMode_, uint8_t enc_id, bool is3A_,bool is_param_identify_, float count_per_rev, int esppwmgroup) {
             pwm1 = PWM1;//dir if 10A
             pwm2 = PWM2;//pwm if 10A
             enc1 = ENC1;
@@ -29,6 +29,7 @@ class PololuMDD {
             isTorqueMode = isTorqueMode_;
             is3A = is3A_;
             is_param_identify = is_param_identify_;
+            esppwmgroup = esppwmgroup;
         }
         void setup();
         void updatePosition();
@@ -89,6 +90,7 @@ class PololuMDD {
         bool is_param_identify = false;
         int pwm1, pwm2 ,enc1,enc2;
         int counter,prevCounter;
+        int esppwmgroup;
         Encoder *Enc;
         bool mIsReversed;
         float targetTorque;

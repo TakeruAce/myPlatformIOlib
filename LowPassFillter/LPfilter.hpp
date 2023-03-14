@@ -14,12 +14,22 @@ class LPfilter {
             prevVal = outPut;
             return outPut;
         }
-
         void setCutoff(double f) {
-            paramA = paramA = 1 / (2 * PI * f * T_control_ + 1);
+            f_cutoff = f;
+            paramA = 1 / (2 * PI * f_cutoff * T_control_ + 1);
+        }
+        void setTcontrol(double t) {
+            T_control_ = t;
+            paramA = 1 / (2 * PI * f_cutoff * T_control_ + 1);
+        }
+        void setParam(double t, double f) {
+            T_control_ = t;
+            f_cutoff = f;
+            paramA = 1 / (2 * PI * f_cutoff * T_control_ + 1);
         }
     private :
         double paramA; // a = 1 / (2pi * fc * dt + 1)
         double prevVal = 0;
         double T_control_;
+        double f_cutoff;
 };
