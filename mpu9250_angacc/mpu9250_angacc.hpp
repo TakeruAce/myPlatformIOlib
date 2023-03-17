@@ -78,12 +78,12 @@ class MPU9250_ANGACC : public MPU9250 {
         }
         else {
             Serial.println("imu connection success");
-            setAccelRange(ACCEL_RANGE_16G);
-            setGyroRange(GYRO_RANGE_2000DPS);
         }
         // setting of imu can be changed here.
-        calibrateAccel();
+        // calibrateAccel();
         calibrateGyro();
+        setAccelRange(ACCEL_RANGE_16G);
+        setGyroRange(GYRO_RANGE_2000DPS);
         return status;
     }
 
@@ -116,5 +116,8 @@ class MPU9250_ANGACC : public MPU9250 {
 
     vector<float> getAccel() {
         return {_ax,_ay,_az};
+    }
+    vector<float> getMag() {
+        return {_hx,_hy,_hz};
     }
 };

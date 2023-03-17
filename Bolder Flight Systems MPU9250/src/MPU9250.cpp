@@ -654,7 +654,7 @@ int MPU9250::calibrateGyro() {
     _gxbD += (getGyroX_rads() + _gxb)/((double)_numSamples);
     _gybD += (getGyroY_rads() + _gyb)/((double)_numSamples);
     _gzbD += (getGyroZ_rads() + _gzb)/((double)_numSamples);
-    delay(20);
+    delay(10);
   }
   _gxb = (float)_gxbD;
   _gyb = (float)_gybD;
@@ -727,7 +727,7 @@ int MPU9250::calibrateAccel() {
     _axbD += (getAccelX_mss()/_axs + _axb)/((double)_numSamples);
     _aybD += (getAccelY_mss()/_ays + _ayb)/((double)_numSamples);
     _azbD += (getAccelZ_mss()/_azs + _azb)/((double)_numSamples);
-    delay(20);
+    delay(10);
   }
   if (_axbD > 9.0f) {
     _axmax = (float)_axbD;
@@ -896,7 +896,7 @@ int MPU9250::calibrateMag() {
     } else {
       _counter++;
     }
-    delay(20);
+    delay(10);
   }
 
   // find the magnetometer bias
