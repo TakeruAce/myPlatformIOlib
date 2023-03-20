@@ -48,8 +48,31 @@ class ICM20948_ANGACC : public Adafruit_ICM20948 {
             prev_updated_micros = micros();
         }
 
+        int checkIMU(int CS_PIN) {
+            int status = begin_SPI(CS_PIN);
+            Adafruit_BusIO_Register chip_id = Adafruit_BusIO_Register(
+                i2c_dev, spi_dev, ADDRBIT8_HIGH_TOREAD, ICM20X_B0_WHOAMI);
+
+            _setBank(0);
+            uint8_t chip_id_ = chip_id.read();
+            // This returns true when using a 649 lib with a 948
+            if ((chip_id_ != ICM20649_CHIP_ID) && (chip_id_ != ICM20948_CHIP_ID)) {
+                return -1;
+            }
+            return 0;
+        }
+
         int setupIMU(int CS_PIN) {
             int status = begin_SPI(CS_PIN);
+            Adafruit_BusIO_Register chip_id = Adafruit_BusIO_Register(
+                i2c_dev, spi_dev, ADDRBIT8_HIGH_TOREAD, ICM20X_B0_WHOAMI);
+
+            _setBank(0);
+            uint8_t chip_id_ = chip_id.read();
+            // This returns true when using a 649 lib with a 948
+            if ((chip_id_ != ICM20649_CHIP_ID) && (chip_id_ != ICM20948_CHIP_ID)) {
+                return -1;
+            }
             if (status<0)
             {
                 return status;
