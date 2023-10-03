@@ -223,7 +223,7 @@ void PololuMDD::calcuratePWMAngle(int counter) {
   prevmotorAngleStableMills = millis();
   motorAngleIntegral += errorInCount * (double)dt / 1000000.0;
 
-  int motorDir = 0.5 * errorInCount + 2 *  motorAngleIntegral;
+  int motorDir = 0.3 * errorInCount + 1 *  motorAngleIntegral;
   if (mIsReversed) {
     if (motorDir > 0) {
       pwm1OutVal = constrain(abs(motorDir),10,100);
