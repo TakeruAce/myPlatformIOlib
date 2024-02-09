@@ -107,7 +107,7 @@ class MaxonMotor {
         // const float AM_GEAR_RATIO = 150.5827; // pololu #3053
         float AM_GEAR_RATIO = 25; 
         float DEGREE_PER_COUNT = 1;
-        const float ALLOWABLE_DEGREE = 3;
+        const float ALLOWABLE_DEGREE = 1;
         const float MAX_TORQUE = 7.8*9.8/100;//[Nm]
         // for PID 
         double pid[4];

@@ -98,7 +98,6 @@ void PololuMDD::setTargetAngle(float target) {
     targetAngle = (getAngle() - fmod(getAngle(),360)) + target;
     isAimingAngle = true;
     isTorqueMode = false;
-    digitalWrite(13,HIGH);
 }
 
 void PololuMDD::setTargetTorque(float target) {
@@ -210,7 +209,6 @@ void PololuMDD::calcuratePWMAngle(int counter) {
       isAimingAngle = false;
       motorAngleIntegral = 0;
       motorAngleStableMillis = 0;
-      digitalWrite(13,LOW);
       // if (resetFlag) {
       //   Enc->write(0);
       //   resetFlag = false;
@@ -226,19 +224,19 @@ void PololuMDD::calcuratePWMAngle(int counter) {
   int motorDir = 0.3 * errorInCount + 1 *  motorAngleIntegral;
   if (mIsReversed) {
     if (motorDir > 0) {
-      pwm1OutVal = constrain(abs(motorDir),10,100);
+      pwm1OutVal = constrain(abs(motorDir),15,100);
       pwm2OutVal = 0;
     } else if (motorDir < -0) {
       pwm1OutVal = 0;
-      pwm2OutVal = constrain(abs(motorDir),10,100);
+      pwm2OutVal = constrain(abs(motorDir),15,100);
     }
   } else {
     if (motorDir < -0) {
-      pwm1OutVal = constrain(abs(motorDir),10,100);
+      pwm1OutVal = constrain(abs(motorDir),15,100);
       pwm2OutVal = 0;
     } else if (motorDir > 0) {
       pwm1OutVal = 0;
-      pwm2OutVal = constrain(abs(motorDir),10,100);
+      pwm2OutVal = constrain(abs(motorDir),15,100);
     }
   }
 

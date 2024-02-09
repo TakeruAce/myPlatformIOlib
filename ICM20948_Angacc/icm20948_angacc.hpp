@@ -118,7 +118,6 @@ class ICM20948_ANGACC : public Adafruit_ICM20948 {
             setAccelRateDivisor(1);
             uint16_t accel_divisor = getAccelRateDivisor();
             float accel_rate = 1125 / (1.0 + accel_divisor);
-
             Serial.print("Accelerometer data rate divisor set to: ");
             Serial.println(accel_divisor);
             Serial.print("Accelerometer data rate (Hz) is approximately: ");

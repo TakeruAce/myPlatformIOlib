@@ -22,21 +22,17 @@ class BLDC_ESC {
             mThrottle.writeMicroseconds(mPulseWidthForMaxSpeed);
             int mil = millis();
             while(millis() - mil < 2000);
-            digitalWrite(13,LOW);
             mThrottle.writeMicroseconds(mPulseWidthForMinSpeed);
             mil = millis();
             while(millis() - mil < 2000);
-            digitalWrite(13,HIGH);
             mIsSetup = true;
         }
 
         void quickSetup() {
             setThrottlePin();
-            digitalWrite(13,HIGH);
             mThrottle.writeMicroseconds(mPulseWidthForMinSpeed);
             int mil = millis();
             while(millis() - mil < 2000);
-            digitalWrite(13,LOW);
             mIsSetup = true;
         }
         // float 0 - 1

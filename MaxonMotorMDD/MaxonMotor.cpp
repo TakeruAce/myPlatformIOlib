@@ -262,19 +262,19 @@ void MaxonMotor::calcuratePWMAngle(int counter) {
   int motorDir = 0.3 * errorInCount + 1 *  motorAngleIntegral;
   if (mIsReversed) {
     if (motorDir > 0) {
-      pwm1OutVal = constrain(abs(motorDir),10,100);
+      pwm1OutVal = constrain(abs(motorDir),0,100);
       pwm2OutVal = 0;
     } else if (motorDir < -0) {
       pwm1OutVal = 0;
-      pwm2OutVal = constrain(abs(motorDir),10,100);
+      pwm2OutVal = constrain(abs(motorDir),0,100);
     }
   } else {
     if (motorDir < -0) {
-      pwm1OutVal = constrain(abs(motorDir),10,100);
+      pwm1OutVal = constrain(abs(motorDir),0,100);
       pwm2OutVal = 0;
     } else if (motorDir > 0) {
       pwm1OutVal = 0;
-      pwm2OutVal = constrain(abs(motorDir),10,100);
+      pwm2OutVal = constrain(abs(motorDir),0,100);
     }
   }
 
